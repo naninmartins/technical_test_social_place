@@ -1,18 +1,36 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+<nav-bar url="/"  img="https://www.socialplace.com.br/images/logo.png" imgWidth="120" imgHeight="80">
+    <li>gr</li>
+    <li>gr</li>
+    <li>gr</li>
+    <li>gr</li>
+
+   
+</nav-bar>
+<button ></button>
+     
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import NavBar from '@/components/navbars/navbar'
+
 
 export default {
   name: 'home',
   components: {
-    HelloWorld
+    'NavBar': NavBar,
+    //here I can add some others child components
+  },
+    data() {
+      return {
+     
+      };      
+    }
   }
-}
+
 </script>
