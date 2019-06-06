@@ -6,10 +6,12 @@ import store from './store'
 import 'bootstrap'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-Vue.config.productionTip = false
 
 new Vue({
+
+  components: { 
+   },
   router,
-  store,
+  store, 
   render: h => h(App)
 }).$mount('#app')
