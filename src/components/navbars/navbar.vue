@@ -1,14 +1,13 @@
 <template>
-  <div class="row  border-bottom">
+  <div class="row border-bottom">
 
-    <grid-vue 
-      :size="{col:[2,2,2],offset:[0,0,0], opts:''}">
+    <grid-vue :size="{col:[1,1,1],offset:[5,0,0], opts:''}">
       <a class="navbar-brand" :href="url">
           <img v:if="" :src="img" :width="imgWidth" :height="imgHeight" class="d-inline-block align-top" alt="">
       </a>
     </grid-vue>
 
-    <grid-vue :size="{col:[4,4,4],offset:[4,4,4], opts:'navbar'}">
+    <grid-vue v-if="$store.getters.getSizeScreen != 'sm'" :size="{col:[8,5,4],offset:[2,5,5], opts:'navbar'}">
       <div class="input-group">
         <div class="input-group-addon">            
           <button :class="buttonBoostrapStyle">
@@ -18,8 +17,8 @@
         <input v-model="message" class="form-control border-0 rounded" placeholder=" Procure por uma delícia..."> 
       </div>
     </grid-vue>
-
-    <grid-vue :size="{col:[2,2,2],offset:[0,0,0], opts:'btn btn-group navbar'}">
+          
+    <grid-vue v-if="$store.getters.getSizeScreen == 'lg'" :size="{col:[2,2,2],offset:[0,0,0], opts:'btn btn-group navbar'}">
       <button @click="notDeveloped" :class="buttonBoostrapStyle" >
         <i class="fas fa-user fa-lg" @click="notDeveloped"></i> 
       </button>    

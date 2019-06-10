@@ -6,6 +6,7 @@
 
 <script>
 // @ is an alias to /src
+//Template example: <grid-vue :size="{col:[1,1,1],offset:[0,0,0], opts:''}"> </grid-vue> sm md lg
 export default {
   name: 'gridVue',
   props:  

@@ -17,30 +17,17 @@ export default {
     };      
   },
   methods: {
-    getSizeScreen () {
-      //console.log(window.innerWidth);
-      if (window.innerWidth >= 1200) {
-        return 'xl';
-      }
-      else if (window.innerWidth >= 992) {
-        return 'lg';
-      }
-      else if (window.innerWidth >= 768) {
-        return 'md';
-      }
-      else if (window.innerWidth >= 576) {
-        return 'sm';
-      }
-      else {
-        return 'xm';
-      }
-  
-    }
-  
+    sizeScreen () {
+      return this.$store.commit('setSizeScreen');
+    }  
   },
-  created() {   
-    window.onresize = this.getSizeScreen;
+  created() {  
+    window.onresize = this.sizeScreen;    
+  },
+  beforeCreate() {     
+    window.onresize = this.$store.commit('setSizeScreen');
   }  
+  
 }
  
 
