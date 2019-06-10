@@ -12,27 +12,17 @@ export default {
   {
     size : Object,  
   },
-  data () {
-    return {
-      //size : `col-xd-${this.xg} col-xd-${this.lg} col-xd-${this.md} col-xd-${this.sm} col-xd-${this.xm}`
-    }
-  },
-  methods: {
-  
-  },
   computed: {
+    //I need remember that scope in Vue to props and methods are a bit differents than JS, so keep aware when use function() or a anonimous function or arrow function
     mountSize : function() {
-      //let sizeArray = `col-xg-${$vm0._props.xm} col-lg-${$vm0._props.xm} col-md-${$vm0._props.xm} col-sm-${$vm0._props.xm} col-xm-${$vm0._props.xm}`;
-      let sizeArray = '';
-     
-    Object.keys(this.size).forEach( (key) => {
-      //console.log(key, this.size[key]);
-      sizeArray+= `col-${key}-${this.size[key]} `;
-      
-    });
-      console.dir(sizeArray);
-    
-      return sizeArray;
+      // return a line to fit the bootstrap grid ie:
+      //col-2 offset-2 col-sm-2 offset-sm-2 col-md-3 offset-md-3 col-lg-4 offset-lg-4 col-xl-4 offset-xl-4              
+      return `col-${this.size['col'][0]} offset-${this.size['offset'][0]}
+      col-sm-${this.size['col'][0]} offset-sm-${this.size['offset'][0]} 
+      col-md-${this.size['col'][1]} offset-md-${this.size['offset'][1]}
+      col-lg-${this.size['col'][2]} offset-lg-${this.size['offset'][2]}
+      col-xl-${this.size['col'][2]} offset-xl-${this.size['offset'][2]}
+      ${this.size['opts']}`;  
     }
   },
 }

@@ -1,11 +1,14 @@
 <template>
   <div class="row  border-bottom">
-    <div class="col-md-2">
+
+    <grid-vue 
+      :size="{col:[2,2,2],offset:[0,0,0], opts:''}">
       <a class="navbar-brand" :href="url">
-          <img :src="img" :width="imgWidth" :height="imgHeight" class="d-inline-block align-top" alt="">
+          <img v:if="" :src="img" :width="imgWidth" :height="imgHeight" class="d-inline-block align-top" alt="">
       </a>
-    </div>
-    <div class="col-md-4 navbar offset-md-4">         
+    </grid-vue>
+
+    <grid-vue :size="{col:[4,4,4],offset:[4,4,4], opts:'navbar'}">
       <div class="input-group">
         <div class="input-group-addon">            
           <button :class="buttonBoostrapStyle">
@@ -14,16 +17,17 @@
         </div>
         <input v-model="message" class="form-control border-0 rounded" placeholder=" Procure por uma delícia..."> 
       </div>
+    </grid-vue>
 
-    </div>
-    <div class="col-md-2 btn btn-group navbar">
+    <grid-vue :size="{col:[2,2,2],offset:[0,0,0], opts:'btn btn-group navbar'}">
       <button @click="notDeveloped" :class="buttonBoostrapStyle" >
         <i class="fas fa-user fa-lg" @click="notDeveloped"></i> 
       </button>    
       <button @click="notDeveloped" :class="buttonBoostrapStyle" >
         <i class="fas fa-user-cog fa-lg" @click="notDeveloped"></i> 
-      </button>   
-    </div>
+      </button> 
+    </grid-vue>
+    
   </div>
   
 </template>
