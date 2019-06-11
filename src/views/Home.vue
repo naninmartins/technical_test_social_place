@@ -5,7 +5,9 @@
     <nav-bar url="/" img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/>
     <!-- <nav-bar url="/" v-if="$store.getters.getSizeScreen == 'sm'"  img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/> -->
         <br> <br><br><br><br><br> 
-      <category-sticker/>
+        
+        <row-category/>
+      
           
      <navbar-phone-footer v-if="$store.getters.getSizeScreen == 'sm'"/>
   </div> 

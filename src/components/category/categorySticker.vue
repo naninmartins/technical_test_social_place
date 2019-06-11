@@ -1,52 +1,26 @@
 <template>
-  <div class="row">
-    
-    <grid-vue class="distance" :size="{col:[1,1,1],offset:[0,0,0], opts:''}">
-      <a  href="/#">
-        <img v:if=""  width="120" height="90" src="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg">
-        <div class="card">
-          <b>Pizza</b>
-        </div>
-      </a>
-    </grid-vue>
-
-        <grid-vue class="distance" :size="{col:[1,1,1],offset:[0,0,0], opts:''}">
-      <a  href="/#">
-        <img v:if=""  width="120" height="90" src="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg">
-        <div class="card">
-          <b>Pizza</b>
-        </div>
-      </a>
-    </grid-vue>
-
-        <grid-vue class="distance" :size="{col:[1,1,1],offset:[0,0,0], opts:''}">
-      <a  href="/#">
-        <img v:if=""  width="120" height="90" src="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg">
-        <div class="card">
-          <b>Pizza</b>
-        </div>
-      </a>
-    </grid-vue>
-
-    
-    
+  <div class="sticker">
+    <a  :href="url">
+      <img v:if=""  width="120" height="90" :src="img">
+      <div class="card">
+        <b>{{ type }}</b>
+      </div>
+    </a>
   </div>
-
 </template>
 
 <script>
 // @ is an alias to /src
 export default {
   name: 'categorySticker',
-  props:['url','img','title'],
+  props:['url','img','type'],
   data () {
     return {
-     
-    }
+
+    }    
   },
   methods: {
-    notDeveloped: function () {
-    }
+
   }
 }
 </script>
@@ -54,6 +28,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 
+  .sticker {
+    display: inline-block;
+    position: relative;    
+  }
   .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);    
     width: 90px;
@@ -62,18 +40,17 @@ export default {
     color: black;
     bottom: 20px;
     left: 13px;
-  }
+  }  
 
-  .distance {
-    margin-right: 80px;    
+  .sticker:hover {
+    transform: scale(1.1);  
   }
-
-  .distance:hover {
-    transform: scale(1.1);
-    
-  }
-
-  .distance:hover .card {
+  
+  .sticker:hover .card {
     box-shadow: 0 14px 20px 0 rgba(0,0,0,0.2);
+  }
+
+  a {
+    text-decoration: none;
   }
 </style>
