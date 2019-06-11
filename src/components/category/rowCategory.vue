@@ -1,9 +1,8 @@
 <template>
 
-  <div class="tes container" >
-    <button @click="rightScroll(true)">clica</button>
-    <br>
-    <button @click="rightScroll()">clica</button>
+  <div class="rowCategory container" >
+    <button @click="leftScroll()">Left</button>
+    <button @click="rightScroll()">Right</button>
     <br>
     <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg" type="Lanche"/>
     <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/eb92c178bc627bbe55b21b750054618471309b65.jpg" type="Podrão"/>
@@ -27,16 +26,23 @@ export default {
     return {
       pos : 0,
       range : 50, 
-      cssRoot : document.documentElement
+      cssRoot : document.documentElement,
+      firstSticker : document.querySelector('.sticker')
     }
   },
   methods: {
-    rightScroll : function (side) {
-      (side) ? this.cssRoot.style.setProperty('--pos-right',`${this.pos+=this.range}px`) : this.cssRoot.style.setProperty('--pos-right',`${this.pos-=this.range}px`);
+    rightScroll : function () {
+      let categoryWidth = document.querySelector('.rowCategory').offsetWidth;     
+      let lastSticker = document.querySelector('.sticker:last-child').offsetLeft;      
+      if (lastSticker+10 > categoryWidth) this.cssRoot.style.setProperty('--pos-right',`${this.pos+=this.range}px`);       
+    },
+     
+    leftScroll : function () {    
+      let categoryLeft = document.querySelector('.rowCategory').offsetLeft;
+      let firstSticker= document.querySelector('.sticker').offsetLeft;      
+      //console.log(categoryLeft,firstSticker);
+      if (firstSticker < categoryLeft) this.cssRoot.style.setProperty('--pos-right',`${this.pos-=this.range}px`);     
     }, 
-    
-    
-
   }
 }
 </script>
@@ -45,11 +51,10 @@ export default {
 <style scoped lang="scss">
   
   :root {
-    --pos-right: 0px;
-    
+    --pos-right: 0px;    
   }
 
-  .tes {
+  .rowCategory {
     //width: 900px;
     white-space: nowrap;
     overflow: hidden;    
@@ -58,8 +63,5 @@ export default {
   .sticker {
     right: var(--pos-right);
   }
-
-  
-
 
 </style>

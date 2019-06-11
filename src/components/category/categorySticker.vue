@@ -31,15 +31,6 @@ export default {
   .sticker {
     display: inline-block;
     position: relative;    
-  }
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);    
-    width: 90px;
-    border-radius: 5px;
-    text-align: center;
-    color: black;
-    bottom: 20px;
-    left: 13px;
   }  
 
   .sticker:hover {
@@ -48,6 +39,16 @@ export default {
   
   .sticker:hover .card {
     box-shadow: 0 14px 20px 0 rgba(0,0,0,0.2);
+  }
+
+   .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);    
+    width: 90px;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    bottom: 20px;
+    left: 13px;
   }
 
   a {
