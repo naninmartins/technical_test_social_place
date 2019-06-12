@@ -3,7 +3,7 @@
     <a  :href="url">
       <img width="120" height="90" :src="img">
       <div class="card">
-        <b>{{ type }}</b>
+        <span> {{name}} </span>
       </div>
     </a>
   </div>
@@ -13,7 +13,7 @@
 // @ is an alias to /src
 export default {
   name: 'categorySticker',
-  props:['url','img','type'],
+  props:['url','img','name'],
   data () {
     return {
 
@@ -50,6 +50,10 @@ export default {
     color: black;
     bottom: 20px;
     left: 13px;
+  }
+
+  span {
+       overflow-wrap: break-word;
   }
 
   a {

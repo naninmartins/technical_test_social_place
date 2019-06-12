@@ -1,21 +1,10 @@
 <template>
-  <div>     
+  <div>  
     <button class="buttonLeft" @click="leftScroll"><i class="fas fa-chevron-left fa-md"></i></button>       
     <button class="buttonRight" @click="rightScroll"><i class="fas fa-chevron-right fa-md"></i></button>
-    <div class="rowCategory" >
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg" type="Set0"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/eb92c178bc627bbe55b21b750054618471309b65.jpg" type="Podrão"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/6e993122ea206f2603276b0503b2bbda2cce14e3.jpg" type="Brasileiro"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg" type="Lanche"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/eb92c178bc627bbe55b21b750054618471309b65.jpg" type="Podrão"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/6e993122ea206f2603276b0503b2bbda2cce14e3.jpg" type="Brasileiro"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg" type="Lanche"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/6e993122ea206f2603276b0503b2bbda2cce14e3.jpg" type="Brasileiro"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/eb92c178bc627bbe55b21b750054618471309b65.jpg" type="Podrão"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/6e993122ea206f2603276b0503b2bbda2cce14e3.jpg" type="Brasileiro"/>
-      <category-sticker url="#" img="https://api.socialplace.com.br:443/static/type/c06ccd418b124ad7ef68c8305fd5e88cb1350319.jpg" type="Lanche"/>
-     
-    </div>
+    <div class="rowCategory"> 
+      <category-sticker  v-for="category in categories" :key="category.id" url="#" :img="$store.getters.getUrlApi + category.image"  :name="category.name"/>
+     </div>
   </div>
 
 </template>
@@ -24,14 +13,13 @@
 // @ is an alias to /src
 export default {
   name: 'rowCategory',
-  props:[],
+  props:['categories'],
 
   data () {
     return {
       pos : 0,
-      range : 50, 
+      range : 70, 
       cssRoot : document.documentElement,
-      firstSticker : document.querySelector('.sticker')
     }
   },
 

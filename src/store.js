@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    sizeScreen: ''
+    sizeScreen: '',
+    urlApi: 'https://api.socialplace.com.br:443'
     
   },
   getters: {
     getSizeScreen: state => {
       return state.sizeScreen;
+    },
+    getUrlApi: state => {
+      return state.urlApi;
     }
   },
   mutations: {
