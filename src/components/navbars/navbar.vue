@@ -1,5 +1,5 @@
 <template>
-  <div class="row border-bottom">
+  <div class="row container-fluid border-bottom">
 
     <grid-vue :size="{col:[1,1,1],offset:[5,0,0], opts:''}">
       <a class="navbar-brand" :href="url">
@@ -59,4 +59,5 @@ input {
     margin: 23px 3px;
     padding: 20px;
 }
+
 </style>

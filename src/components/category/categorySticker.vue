@@ -1,7 +1,7 @@
 <template>
   <div class="sticker">
     <a  :href="url">
-      <img v:if=""  width="120" height="90" :src="img">
+      <img width="120" height="90" :src="img">
       <div class="card">
         <b>{{ type }}</b>
       </div>
@@ -30,6 +30,7 @@ export default {
 
   .sticker {
     display: inline-block;
+    //float: left;    
     position: relative;    
   }  
 
