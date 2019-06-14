@@ -1,14 +1,9 @@
 <template>
 
-  <div>
-    <!-- {{ $store.getters.getSizeScreen }} -->
-    <nav-bar url="/" img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/>
-    <!-- <nav-bar url="/" v-if="$store.getters.getSizeScreen == 'sm'"  img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/> -->
-        <br> <br><br><br><br><br> 
+  <div>   
+    <nav-bar url="/" img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/>   
         
-        <row-category :categories="apiCategories"/>
-      
-      <!-- {{ categories }} -->
+        <row-category :categories="apiCategories"/>      
           
      <navbar-phone-footer v-if="$store.getters.getSizeScreen == 'sm'"/>
   </div> 
