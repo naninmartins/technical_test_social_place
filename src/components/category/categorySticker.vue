@@ -1,6 +1,6 @@
 <template>
   <div class="sticker">
-    <a  :href="url">
+    <a  :href="url" >
       <img width="120" height="90" :src="img">
       <div class="card">
         <span> {{name}} </span>
@@ -21,7 +21,13 @@ export default {
   },
   methods: {
 
-  }
+    
+  },
+  
+  created() {
+
+ 
+  },
 }
 </script>
 
@@ -58,5 +64,10 @@ export default {
 
   a {
     text-decoration: none;
+    
+  }
+
+  img {
+    
   }
 </style>

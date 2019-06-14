@@ -1,9 +1,9 @@
 <template>
-  <div>  
+  <div> 
     <button class="buttonLeft" @click="leftScroll"><i class="fas fa-chevron-left fa-md"></i></button>       
-    <button class="buttonRight" @click="rightScroll"><i class="fas fa-chevron-right fa-md"></i></button>
-    <div class="rowCategory"> 
-      <category-sticker  v-for="category in categories" :key="category.id" url="#" :img="$store.getters.getUrlApi + category.image"  :name="category.name"/>
+    <button class="buttonRight" @click="rightScroll"><i class="fas fa-chevron-right fa-md"></i></button> 
+    <div class="rowCategory" @touchstart="touchStart($event)" @touchmove="touching($event)"> 
+      <category-sticker v-for="category in categories" :key="category.id" url="#" :img="$store.getters.getUrlApi + category.image"  :name="category.name"/>
      </div>
   </div>
 
@@ -17,34 +17,85 @@ export default {
 
   data () {
     return {
-      pos : 0,
-      range : 70, 
+      cssPos : 0,
+      touchPos : 0,
+      rangeClick : 70,
+      velTouch : 50,
+      lastStickerOffSet : 45,
       cssRoot : document.documentElement,
     }
   },
 
   methods: {
-    rightScroll : function () {
-      let categoryWidth = document.querySelector('.rowCategory').offsetWidth;     
-      let lastSticker = document.querySelector('.sticker:last-child').offsetLeft;      
-      if (lastSticker+10 > categoryWidth) this.cssRoot.style.setProperty('--pos-right',`${this.pos+=this.range}px`);       
+
+    setCssPos: function (increment) {
+
+      return this.cssRoot.style.setProperty('--pos-right',`${this.cssPos+=increment}px`);
     },
 
-    leftScroll : function () {    
+     maxLeft : function () {  //return if the element's offset is max
+
       let categoryLeft = document.querySelector('.rowCategory').offsetLeft;
       let firstSticker= document.querySelector('.sticker').offsetLeft;
-      if (firstSticker < categoryLeft) this.cssRoot.style.setProperty('--pos-right',`${this.pos-=this.range}px`);     
-    }, 
+      return firstSticker < categoryLeft;
+
+    },
+
+    maxRight : function () {
+
+      let categoryWidth = document.querySelector('.rowCategory').offsetWidth;     
+      let lastSticker = document.querySelector('.sticker:last-child').offsetLeft;      
+      return (lastSticker+this.lastStickerOffSet) > categoryWidth;
+
+    },
+
+    rightScroll : function () {        
+     
+      if (this.maxRight()) {
+        this.setCssPos(this.rangeClick);
+      } 
+
+    },
+
+    leftScroll : function () {
+      
+      if (this.maxLeft()) {
+        this.setCssPos(this.rangeClick * -1);
+      } 
+
+    },
+    
+    touchStart: function (event) {  //set touch reference when is touchStart
+
+      this.touchPos = event.touches[0].clientX;
+
+    },
+    
+    touching: function (event) {  //set difference from touchStart
+     
+      let diff = (this.touchPos - event.touches[0].clientX) / this.velTouch;     
+      
+      if (diff < 0 && this.maxLeft()  ||  diff > 0 && this.maxRight()) {
+        this.setCssPos(diff);
+      }
+
+    },
   },
 
   created() {
-    window.addEventListener('resize', () =>{
-      this.cssRoot.style.setProperty('--pos-right',`0px`); 
-    });
+
+    window.addEventListener('resize', () =>{ 
+      this.cssRoot.style.setProperty('--pos-right',`0px`); //set initial position when screen size change
+    }); 
+
   },
 
   destroyed() {
-     window.removeEventListener('resize');
+
+     window.removeEventListener('resize', () =>{
+      this.cssRoot.style.setProperty('--pos-right',`0px`); 
+    });
+
   },     
 }
 </script>
