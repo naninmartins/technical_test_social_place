@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     sizeScreen: '',
+    widthScreen: null,
     urlApi: 'https://api.socialplace.com.br:443'
     
   },
@@ -13,13 +14,19 @@ export default new Vuex.Store({
     getSizeScreen: state => {
       return state.sizeScreen;
     },
+    getwidthScreen: state => {
+      return state.widthScreen;
+    },
     getUrlApi: state => {
       return state.urlApi;
     }
   },
   mutations: {
 
-    setSizeScreen (state) {
+    setSizeScreen (state) {      
+
+      state.widthScreen = window.innerWidth;
+
       if (window.innerWidth >= 992) {
         return state.sizeScreen = 'lg';
       }

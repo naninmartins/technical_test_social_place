@@ -1,8 +1,8 @@
 <template>
   <div> 
-    <button class="buttonLeft" @click="leftScroll"><i class="fas fa-chevron-left fa-md"></i></button>       
-    <button class="buttonRight" @click="rightScroll"><i class="fas fa-chevron-right fa-md"></i></button> 
-    <div class="rowCategory" @touchstart="touchStart($event)" @touchmove="touching($event)"> 
+    <button v-if="$store.getters.getwidthScreen >= 492 " class="buttonLeft" @click="leftScroll"><i class="fas fa-chevron-left fa-md"></i></button>       
+    <button v-if="$store.getters.getwidthScreen >= 492 " class="buttonRight" @click="rightScroll"><i class="fas fa-chevron-right fa-md"></i></button> 
+    <div class="rowCategory" @touchstart="touchStart($event)" @touchend="touchEnd($event)" @touchmove="touching($event)"> 
       <category-sticker v-for="category in categories" :key="category.id" url="#" :img="$store.getters.getUrlApi + category.image"  :name="category.name"/>
      </div>
   </div>
@@ -19,9 +19,11 @@ export default {
     return {
       cssPos : 0,
       touchPos : 0,
+      fingerTouch : 0,
       rangeClick : 70,
-      velTouch : 50,
+      velTouch : 0.5, // inversely proportional
       lastStickerOffSet : 45,
+      lastStickerOffSetTouch : 120,
       cssRoot : document.documentElement,
     }
   },
@@ -37,6 +39,7 @@ export default {
 
       let categoryLeft = document.querySelector('.rowCategory').offsetLeft;
       let firstSticker= document.querySelector('.sticker').offsetLeft;
+      
       return firstSticker < categoryLeft;
 
     },
@@ -46,6 +49,27 @@ export default {
       let categoryWidth = document.querySelector('.rowCategory').offsetWidth;     
       let lastSticker = document.querySelector('.sticker:last-child').offsetLeft;      
       return (lastSticker+this.lastStickerOffSet) > categoryWidth;
+
+    },
+    
+    maxTouchOffset : function (diff) { //The diff can't be bigger than Stickers offsets, if else must be set sticker offset
+
+      let firstSticker= document.querySelector('.sticker').offsetLeft;
+      let categoryWidth = document.querySelector('.rowCategory').offsetWidth;     
+      let lastSticker = document.querySelector('.sticker:last-child').offsetLeft + this.lastStickerOffSetTouch; 
+
+       if (diff < firstSticker) {
+
+        diff = firstSticker;
+
+       }
+
+      if (diff > lastSticker - categoryWidth) {
+
+        diff = lastSticker - categoryWidth;
+
+      }
+        return diff;
 
     },
 
@@ -66,19 +90,27 @@ export default {
     },
     
     touchStart: function (event) {  //set touch reference when is touchStart
-
+  
       this.touchPos = event.touches[0].clientX;
+      this.fingerTouch = event.timeStamp;
 
+    },
+
+    touchEnd: function () { 
+      this.fingerTouch = 0;
+      this.velTouch = 0.5;
     },
     
     touching: function (event) {  //set difference from touchStart
      
-      let diff = (this.touchPos - event.touches[0].clientX) / this.velTouch;     
-      
-      if (diff < 0 && this.maxLeft()  ||  diff > 0 && this.maxRight()) {
-        this.setCssPos(diff);
-      }
+      if (this.velTouch < 70) this.velTouch = Math.pow ( (event.timeStamp - this.fingerTouch) / 100, 2) ; //done exponencial function to UI
 
+      let diff = (this.touchPos - event.touches[0].clientX) / this.velTouch;     
+     
+      diff = this.maxTouchOffset(diff);
+
+      this.setCssPos(diff);
+    
     },
   },
 
@@ -119,8 +151,8 @@ export default {
   }
 
   button {
-    opacity: 0.5;
-    padding: 30px 15px;
+    opacity: 1;
+    padding: 37px 3px;
     z-index: 2;
     position: relative; 
     border: none;
@@ -129,7 +161,7 @@ export default {
   }
 
   button:hover {
-    opacity: 0.9;   
+    opacity: 1;   
     border: 1px;
   }
 
