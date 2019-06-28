@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     sizeScreen: '',
     widthScreen: null,
+    heightScreen: null,
     urlApi: 'https://api.socialplace.com.br:443'
     
   },
@@ -26,6 +27,7 @@ export default new Vuex.Store({
     setSizeScreen (state) {      
 
       state.widthScreen = window.innerWidth;
+      state.widthScreen = window.innerHeight;
 
       if (window.innerWidth >= 992) {
         return state.sizeScreen = 'lg';

@@ -35,7 +35,7 @@ export default {
       return this.cssRoot.style.setProperty('--pos-right',`${this.cssPos+=increment}px`);
     },
 
-     maxLeft : function () {  //return if the element's offset is max
+    maxLeft : function () {  //return if the element's offset is max
 
       let categoryLeft = document.querySelector('.rowCategory').offsetLeft;
       let firstSticker= document.querySelector('.sticker').offsetLeft;
@@ -171,8 +171,6 @@ export default {
     
   .buttonRight {
     float: right;
-  } 
-
-
+  }
 
 </style>

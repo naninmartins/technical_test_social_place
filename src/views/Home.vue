@@ -1,11 +1,50 @@
 <template>
 
   <div>   
-    <nav-bar url="/" img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/>   
-        
-        <row-category :categories="apiCategories"/>      
-          
-     <navbar-phone-footer v-if="$store.getters.getSizeScreen == 'sm'"/>
+    <!-- <nav-bar url="/" img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/>    -->
+    <navbar-phone v-if="$store.getters.getSizeScreen == 'sm'"/>    
+  
+    
+     <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+    <div id="cardImg">
+        <img src="https://www.socialplace.com.br/images/logo.png">
+    </div>
+     
   </div> 
 
 </template>
@@ -36,6 +75,7 @@ export default {
     this.$http.get(url).then(response=>{
 
       this.apiCategories = response.data.data.menu;
+      //console.log(response.data.data.menu)
       // criar código para bloquear o processamento aqui                   
 
     }).catch( () =>{
@@ -48,4 +88,15 @@ export default {
 
 }
 </script>
+
+<style scoped lang="scss">
+
+body {
+  margin:0;
+  padding:0;
+  height:100%;
+  min-height: 100%;
+}
+
+</style>
 
