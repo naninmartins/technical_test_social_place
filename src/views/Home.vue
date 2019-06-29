@@ -1,8 +1,8 @@
 <template>
 
   <div>   
-    <!-- <nav-bar url="/" img="https://www.socialplace.com.br/images/logo.png" imgWidth="100" imgHeight="60"/>    -->
-    <navbar-phone v-if="$store.getters.getSizeScreen == 'sm'"/>    
+    <nav-bar url="/" v-if="$store.getters.getSizeScreen == 'lg'" img="https://www.socialplace.com.br/images/logo.png" imgWidth="130" imgHeight="70"/>   
+    <navbar-phone v-if="$store.getters.getSizeScreen != 'lg'"/>    
   
     
      <div id="cardImg">

@@ -3,19 +3,12 @@
 
     <grid-vue :size="{col:[1,1,1],offset:[5,0,0], opts:''}">
       <a class="navbar-brand" :href="url">
-          <img v:if="" :src="img" :width="imgWidth" :height="imgHeight" class="d-inline-block align-top" alt="">
+        <img v:if="" :src="img" :width="imgWidth" :height="imgHeight" class="d-inline-block align-top" alt="">
       </a>
     </grid-vue>
 
     <grid-vue v-if="$store.getters.getSizeScreen != 'sm'" :size="{col:[8,5,4],offset:[2,5,5], opts:'navbar'}">
-      <div class="input-group">
-        <div class="input-group-addon">            
-          <button :class="buttonBoostrapStyle">
-            <i class="fas fa-search fa-lg"></i>
-          </button>            
-        </div>
-        <input v-model="message" class="form-control border-0 rounded" placeholder=" Procure por uma delícia..."> 
-      </div>
+      <input-search/>
     </grid-vue>
           
     <grid-vue v-if="$store.getters.getSizeScreen == 'lg'" :size="{col:[2,2,2],offset:[0,0,0], opts:'btn btn-group navbar'}">
@@ -52,12 +45,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-button {
-  margin: 20px 0 0;
-}
-input {
-    margin: 23px 3px;
-    padding: 20px;
-}
+
 
 </style>
