@@ -36,6 +36,7 @@
           <!-- <button class="heartButton"><i class="fas fa-heart"></i></button> -->
           <img  id="imgCardRight" src="https://www.socialplace.com.br/images/logo.png" >
         </grid-vue>
+        <input-search/>
 
       </div> 
     </div> 

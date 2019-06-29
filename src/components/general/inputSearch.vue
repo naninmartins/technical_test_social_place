@@ -11,7 +11,7 @@ export default {
   props:[],
   data () {
     return {
-
+      message: '',
     }    
   },
   methods: {
