@@ -5,7 +5,7 @@
       <img  src="https://www.socialplace.com.br/images/logo.png">
       <a href="#"><i class="fas fa-arrow-left arrowBack"></i></a>  
 
-      <div v-if="(this.toggleImg)" id="cardImg">
+      <div id="cardImg">
         <img src="https://www.socialplace.com.br/images/logo.png">
       </div>
     </div>
@@ -34,9 +34,9 @@
         <grid-vue :size="{col:[3,0,0],offset:[0,0,0], opts:''}">
           <button class="heartButton"><i class="far fa-heart"></i></button>
           <!-- <button class="heartButton"><i class="fas fa-heart"></i></button> -->
-          <img  id="imgCardRight" src="https://www.socialplace.com.br/images/logo.png" >
+          <img  id="cardImgRight" src="https://www.socialplace.com.br/images/logo.png" >
         </grid-vue>
-        <input-search/>
+        <input-search id='inputSticky'/>
 
       </div> 
     </div> 
@@ -52,32 +52,39 @@ export default {
   props:[],
   data () {
     return {
-      toggleImg : true,       
+       
     }
   },
   methods: {
+
+    switchImg (cardImg, cardImgRight) {
+
+      document.getElementById("cardImg").style.opacity = `${cardImg}`;
+      document.getElementById("cardImgRight").style.opacity = `${cardImgRight}`; 
+
+    },
+
+    changeImgCard (scrollPosition, cardImg) {
+              
+      (scrollPosition > cardImg.offsetTop) ? this.switchImg(0,1) : this.switchImg(1,0);
+    }
    
   },
 
-  mounted() {   
-     
-    var prevScrollpos = window.pageYOffset;    
-    window.onscroll = () => {
-     
-      var currentScrollPos = window.pageYOffset;
-      if (prevScrollpos > currentScrollPos) {
-        document.getElementById("cardImg").style.opacity = "1";
-        document.getElementById("imgCardRight").style.opacity = "0"; 
-      } else {
-        document.getElementById("cardImg").style.opacity = "0";
-        document.getElementById("imgCardRight").style.opacity = "1";
-      }
-      prevScrollpos = currentScrollPos;
-    }
-  },
-  
-  destroyed() {
-    window.onscroll = null;
+  mounted() { 
+
+    const cardImg = document.getElementById("cardImg");
+
+    this.$store.subscribe((mutation,state) =>{
+
+      this.changeImgCard (state.scrollPosition, cardImg);
+    
+    });
+
+
+
+
+
   },
 }
 </script>
@@ -131,7 +138,7 @@ export default {
     height: auto;  
   }
 
-  #imgCardRight {
+  #cardImgRight {
     opacity: 0;
     transition: opacity 0.6s;
     width: 90px;
@@ -142,6 +149,7 @@ export default {
   .containerNav-content {
     width: 100% !important; //bootstrap row affect the width
     padding: 2%;
+    position: relative;
     
   }
 
@@ -201,10 +209,10 @@ export default {
     font-size: 85%;
   }
 
-
-
-
-
-  
+  #inputSticky {
+    display: block;
+    position: sticky;
+    top: 0;
+  }
 
 </style>

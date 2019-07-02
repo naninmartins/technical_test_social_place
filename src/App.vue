@@ -17,17 +17,28 @@ export default {
     };      
   },
   methods: {
-    sizeScreen () {
+
+    setScreen () {
       return this.$store.commit('setSizeScreen');
-    }  
+    },
+
   },
   created() {  
-    window.onresize = this.sizeScreen;    
+
+      this.setScreen();
+          
+      window.onresize = () => {
+        this.setScreen(); 
+      }
+     
+      window.onscroll = () => {
+        this.$store.commit('setScrollPosition');
+      }
   },
-  beforeCreate() {     
-    window.onresize = this.$store.commit('setSizeScreen');
-  }  
-  
+  destroyed() {
+    window.onresize = null;
+    window.onscroll = null;
+  },  
 }
  
 

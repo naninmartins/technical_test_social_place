@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     sizeScreen: '',
     widthScreen: null,
-    heightScreen: null,
+    scrollPosition: null,
     urlApi: 'https://api.socialplace.com.br:443'
     
   },
@@ -17,6 +17,9 @@ export default new Vuex.Store({
     },
     getwidthScreen: state => {
       return state.widthScreen;
+    },
+    getScrollPosition: state => {
+      return state.scrollPosition;
     },
     getUrlApi: state => {
       return state.urlApi;
@@ -38,7 +41,11 @@ export default new Vuex.Store({
       else {
         return state.sizeScreen = 'sm';
       }  
-    } 
+    },
+    
+    setScrollPosition (state) {
+      return state.scrollPosition = window.pageYOffset;
+    }
      
   },
   actions: {
